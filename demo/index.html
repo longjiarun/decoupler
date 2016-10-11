@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>Decoupler</title>
+</head>
+<body>
+<style type="text/css">
+</style>
+
+<div id="J_template"></div>
+
+<script type="text/javascript" src="../dist/decoupler.min.js"></script>
+<script type="text/javascript">
+
+var handler = function(args){
+    console.log('event1:1',args)
+}
+decoupler.on("event1",handler);
+
+decoupler.on("event1",function(args){
+    console.log('event1:2',args)
+});
+
+decoupler.on("event2",function(args){
+    console.log('event21',args)
+});
+
+decoupler.on("event2",handler);
+
+decoupler.on("event1",function(args){
+    console.log('event1:3',args)
+});
+
+decoupler.off("event1",handler);
+
+decoupler.emit("event2",[1,2]);
+
+</script>
+</body>
+</html>

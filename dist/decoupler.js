@@ -6,12 +6,13 @@
     var on = function(name, handler) {
         var events = handlers[name]
 
-        if(typeof handler === 'function') {
+        if (typeof handler === 'function') {
             !events && (events = [])
             events.push(handler)
 
             handlers[name] = events
         }
+
         return this
     }
 
@@ -20,24 +21,23 @@
 
         if (!handler) {
             events = null
-        } else if(events){
+        } else if (events) {
             for (var i = 0, l = events.length; i < l; i++) {
-                if(events[i] === handler){
-                    events.splice(i,1)
+                if (events[i] === handler) {
+                    events.splice(i, 1)
                 }
             }
         }
-
         handlers[name] = events
 
         return this
     }
 
     var emit = function(name, args) {
-        var events = handlers[name]
+        var events = handlers[name],l
 
-        if(events){
-            for (var i = 0, l = events.length; i < l; i++) {
+        if (events && (l = events.length )) {
+            for (var i = 0; i < l; i++) {
                 events[i] && events[i].call(null, args)
             }
         }

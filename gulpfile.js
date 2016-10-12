@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     exec = require('child_process').execSync,
     pkg = require('./package.json')
 
-var getCdn = function(env){
+var getCdn = function(env) {
     return ''
 }
 
@@ -73,7 +73,7 @@ gulp.task('js', function() {
 
 //html
 gulp.task('html', function() {
-    var source = [path.join(demo , '**/*.html')],
+    var source = [path.join(demo, '**/*.html')],
         target = path.join(build, pages);
 
     var stream = gulp.src(source).pipe(ejs({
@@ -110,19 +110,19 @@ gulp.task('docs', function(cb) {
 
 gulp.task('server', function() {
     connect.server({
-        host:"127.0.0.1",
+        host: "127.0.0.1",
         port: port
     });
 });
 
 gulp.task('default', ['clean'], function() {
-    var tasks = environment == 3 ? ['js'] : ['js','html'];
+    var tasks = environment == 3 ? ['js'] : ['js', 'html'];
 
     gulp.start.apply(gulp, tasks);
 });
 
-gulp.task('watch',['server'], function() {
-    var source = [path.join(src , '**/*.js')];
+gulp.task('watch', ['server'], function() {
+    var source = [path.join(src, '**/*.js')];
 
     environment = 0;
     gulp.start('default');
@@ -131,7 +131,7 @@ gulp.task('watch',['server'], function() {
         gulp.start('js');
     });
 
-    source = [path.join(demo , '**/*.html')];
+    source = [path.join(demo, '**/*.html')];
     gulp.watch(source, function() {
         gulp.start('html');
     });

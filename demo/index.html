@@ -23,19 +23,44 @@ decoupler.on("event1",function(args){
     console.log('event1:2',args)
 });
 
-decoupler.on("event2",function(args){
-    console.log('event21',args)
-});
-
-decoupler.on("event2",handler);
-
 decoupler.on("event1",function(args){
     console.log('event1:3',args)
 });
 
-decoupler.off("event1",handler);
+decoupler.on("event2",function(args){
+    console.log('event2:1',args)
+});
+
+decoupler.on("event2",handler);
+
+decoupler.off("event1");
+
+decoupler.off("event2",handler);
 
 decoupler.emit("event2",[1,2]);
+
+
+var args = 1,eventName = 'test',flag = 0;
+
+decoupler.on(eventName,function(_args){
+    flag += _args;
+});
+
+var handler = function(_args){
+    flag += _args;
+}
+
+decoupler.on(eventName,handler);
+
+decoupler.off(eventName, handler);
+
+decoupler.on(eventName,function(_args){
+    flag += _args;
+
+    console.log(flag)
+});
+
+decoupler.emit(eventName,args);
 
 </script>
 </body>

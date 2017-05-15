@@ -20,14 +20,8 @@
   "homepage": "",
   "private": false,
   "ignore": [
-    ".editorconfig",
-    ".gitignore",
-    ".npmignore",
-    "node_modules",
-    "bower_components",
-    "demo",
-    "build",
-    "test"
+     "/*",
+     "!/dist"
   ],
   "dependencies": {}
 }

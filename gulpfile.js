@@ -46,29 +46,29 @@ gulp.task('js', function() {
     }));
 
     //output unmin
-    stream = stream.pipe(gulp.dest(target));
+    return stream = stream.pipe(gulp.dest(target));
 
-    //min
-    environment && (stream = stream.pipe(uglify()));
+    // //min
+    // environment && (stream = stream.pipe(uglify()));
 
-    //rename
-    stream = stream.pipe(rename(function(path) {
-        path.basename += '.min';
-    }));
+    // //rename
+    // stream = stream.pipe(rename(function(path) {
+    //     path.basename += '.min';
+    // }));
 
-    stream = stream.pipe(banner(comment, {
-        pkg: pkg
-    }));
+    // stream = stream.pipe(banner(comment, {
+    //     pkg: pkg
+    // }));
 
-    //output min
-    stream = stream.pipe(gulp.dest(target));
+    // //output min
+    // stream = stream.pipe(gulp.dest(target));
 
-    //output build
-    stream = stream.pipe(rename(function(path) {
-        path.basename = 'index';
-    }));
+    // //output build
+    // stream = stream.pipe(rename(function(path) {
+    //     path.basename = 'index';
+    // }));
 
-    return stream.pipe(gulp.dest(staticPath));
+    // return stream.pipe(gulp.dest(staticPath));
 });
 
 //html
